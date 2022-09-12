@@ -36,11 +36,26 @@ exports.tambahMahasiswa = function(req, res) {
   const { nim, nama, jurusan} = req.body
 
   client.query(`INSERT INTO mahasiswa(nim, nama, jurusan) VALUES('${nim}', '${nama}', '${jurusan}')`,
-    function(error, rows, fields){
+    function(error, result, fields){
       if(error) {
         console.log(error)
       } else {
         response.ok("Berhasil Menambahkan Data", res)
       }
     })
+}
+
+// ubah mahasiswa berdasarkan id
+exports.editMahasiswa = function(req, res) {
+  let id = req.params.id
+  const { nim, nama, jurusan} = req.body
+
+  client.query(`UPDATE mahasiswa SET nim='${nim}', nama='${nama}', jurusan='${jurusan}' WHERE id_mahasiswa ='${id}'`),
+    function(error, result, fields){
+      if (error) {
+        console.log(error)
+      } else {
+        response.ok("Berhasil Update Data", res)
+      }
+    }
 }
