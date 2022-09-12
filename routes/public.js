@@ -14,4 +14,7 @@ module.exports = function(app) {
 
   app.route('/tambah')
     .post(datajson.tambahMahasiswa)
+
+  app.route('/mahasiswa/:id')
+    .put(datajson.editMahasiswa)
 }
