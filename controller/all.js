@@ -31,3 +31,16 @@ exports.mahasiswaByParamsId = function(req, res) {
       })
 }
 
+// add data
+exports.tambahMahasiswa = function(req, res) {
+  const { nim, nama, jurusan} = req.body
+
+  client.query(`INSERT INTO mahasiswa(nim, nama, jurusan) VALUES('${nim}', '${nama}', '${jurusan}')`,
+    function(error, rows, fields){
+      if(error) {
+        console.log(error)
+      } else {
+        response.ok("Berhasil Menambahkan Data", res)
+      }
+    })
+}
